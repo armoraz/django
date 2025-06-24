@@ -1,0 +1,9 @@
+<h1>Resultados para {{ usuario.nombre }}</h1>
+
+<ul>
+    {% for perro in perros %}
+        <li>{{ perro.nombre }} - {{ perro.raza }} - {{ perro.edad }} años - {{ perro.tamaño }}</li>
+    {% empty %}
+        <li>No hay perros disponibles que coincidan con tus preferencias.</li>
+    {% endfor %}
+</ul>

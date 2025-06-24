@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Conocé a nuestros perros en adopción</h1>
+<p class="text-muted mb-4">Encontrá tu nuevo amigo</p>
+
+<div class="panel mb-4">
+    <h2 class="h4">Buscar por</h2>
+    <form method="get">
+        <div class="row g-3">
+            <div class="col-md-3">
+            <label class="form-label">Estado:</label>
+            <select class="form-select" name="estado">
+                <option value="">-- Cualquier estado --</option>
+                {% for key, label in ESTADOS %}
+                    <option value="{{ key }}" {% if key == estado_actual %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Raza:</label>
+                <select class="form-select" name="raza">
+                <option value="">-- Cualquier raza --</option>
+                {% for key, label in RAZAS %}
+                    <option value="{{ key }}" {% if key == raza_actual %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Edad:</label>
+                <input class="form-control" type="number" name="edad" value="{{ request.GET.edad }}">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tamaño:</label>
+                <select class="form-select" name="tamaño">
+                <option value="">-- Cualquier tamaño --</option>
+                {% for key, label in TAMAÑOS %}
+                    <option value="{{ key }}" {% if key == tamaño_actual %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </form>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for perro in perros %}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ perro.url_imagen }}" class="card-img-top" alt="{{ perro.nombre }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ perro.nombre }}</h5><span class="badge     {% if perro.estado == 'disponible' %} bg-success 
+    {% elif perro.estado == 'reservado' %} bg-warning text-dark 
+    {% elif perro.estado == 'adoptado' %} bg-secondary 
+    {% endif %}">{{perro.estado}}</span>
+                    <p class="card-text mb-1"><strong>Raza:</strong> {{ perro.raza }}</p>
+                    <p class="card-text mb-3"><strong>Edad:</strong> {{ perro.edad }} años</p>
+                    <button type="button" class="btn btn-secondary mt-auto" disabled>Adoptar</button>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No hay perros disponibles.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

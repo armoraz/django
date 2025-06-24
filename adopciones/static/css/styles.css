@@ -1,0 +1,190 @@
+/* styles.css - Paleta basada en logo Bolt */
+
+:root {
+    --color-bg: #FFFFFF;
+    --color-navbar: #F4C342;
+    --color-primary: #E04A3F;
+    --color-primary-hover: #C13A2F;
+    --color-secondary: #3FA5B1;
+    --color-secondary-hover: #2F8E99;
+    --color-text: #0A2A45;
+    --color-panel: #FFF7E0;
+    --color-border: #D9D9D9;
+}
+
+/* BODY */
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--color-navbar);
+}
+
+.navbar-brand {
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+.navbar-brand img {
+    margin-right: 8px;
+}
+
+.nav-link {
+    color: var(--color-text);
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}
+
+/* TITULOS */
+h1, h2, h3, h4, h5 {
+    color: var(--color-text);
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* BOTONES */
+.btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-secondary-hover);
+    border-color: var(--color-secondary-hover);
+}
+
+/* LINKS */
+a {
+    color: var(--color-secondary);
+}
+
+a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* PANEL */
+.panel {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-border);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* TABLAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+}
+
+table th, table td {
+    border: 1px solid var(--color-border);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+table thead {
+    background-color: var(--color-panel);
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #FAFAFA;
+}
+
+/* FORMULARIOS */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 5px var(--color-secondary);
+}
+
+/* CARDS DE PERROS */
+.card {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.card-text {
+    color: var(--color-text);
+}
+
+/* Buscador panel */
+.panel {
+    background-color: var(--color-panel);
+    border: 1px solid var(--color-border);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.nav-link {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+}

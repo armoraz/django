@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Perros disponibles</h1>
+
+<h2>Buscar por</h2>
+<form method="get"class="mb-4">
+    <div class="row g-3 align-items-center">
+    <div class="col-auto">
+    <label>Raza:</label>
+    <input class="form-control" type="text" name="raza" value="{{ request.GET.raza }}">
+    </div>
+    <div class="col-auto">
+    <label>Edad:</label>
+    <input class="form-control" type="number" name="edad" value="{{ request.GET.edad }}">
+    </div>
+    <div class="col-auto">
+    <label>Tamaño:</label>
+    <input class="form-control" type="text" name="tamaño" value="{{ request.GET.tamaño }}">
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Edad</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for perro in perros %}
+            <tr>
+                <td><img src="{{ perro.url_imagen }}" alt="{{ perro.nombre }}" style="width: auto; height: 100px;" class="rounded mx-auto d-block"></td>
+                <td>{{ perro.nombre }}</td>
+                <td>{{ perro.raza }}</td>
+                <td>{{ perro.edad }} años</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">No hay perros disponibles.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

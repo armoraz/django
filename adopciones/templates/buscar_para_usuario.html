@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Buscar perros según preferencias de usuario</h1>
+
+{% if error %}
+    <p class="alert alert-danger">{{ error }}</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <label>Ingrese su DNI:</label>
+    <input type="text" name="dni">
+    <button type="submit">Buscar</button>
+</form>
+
+{% if perros %}
+    <h2>Perros disponibles para adopción</h2>
+    {% if mensaje %}
+    <p class="alert alert-success">{{ mensaje }}</p>
+    {% endif %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Raza</th>
+                <th>Tamaño</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        {% for perro in perros %}
+            <tbody>
+                <tr>
+                <td>
+                    <img src="{{ perro.foto.url }}" alt="{{ perro.nombre }}" class="img-fluid">
+                </td>
+                <td>{{ perro.nombre }}</td>
+                <td>{{ perro.edad }} años</td>
+                <td>{{ perro.raza }}</td>
+                <td>{{ perro.tamaño }}</td>
+                <td>{{ perro.estado }}</td>
+                <td>
+                    {% if perro.estado == 'disponible' %}
+                    <form method="post" action="{% url 'postular_adopcion' perro.id usuario.dni %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Postular</button>
+                    </form>
+                    {% else %}
+                    (Reservado)
+                    {% endif %}
+                </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+        </table>
+{% else %}
+    {% if busqueda_realizada %}
+        <p>No hay perros disponibles para adopción según sus preferencias.</p>
+    {% endif %}
+{% endif %}
+{% endblock %}

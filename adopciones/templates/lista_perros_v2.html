@@ -49,30 +49,20 @@
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for perro in perros %}
-<div class="col-md-4 mb-4">
-    <div class="card h-100">
-        <img src="{{ perro.url_imagen }}" class="card-img-top" alt="{{ perro.nombre }}">
-        <div class="card-body d-flex flex-column">
-            <h5 class="card-title text-danger">{{ perro.nombre }}</h5>
-
-            <span class="badge mb-2 
-                {% if perro.estado == 'disponible' %} bg-success 
-                {% elif perro.estado == 'reservado' %} bg-warning text-dark 
-                {% elif perro.estado == 'adoptado' %} bg-secondary 
-                {% endif %}">
-                {{ perro.get_estado_display }}
-            </span>
-
-            <p class="card-text mb-1"><strong>Raza:</strong> {{ perro.raza }}</p>
-            <p class="card-text mb-3"><strong>Edad:</strong> {{ perro.edad }} años</p>
-
-            <div class="mt-auto">
-                <button type="button" class="btn btn-primary w-100">Adoptar</button>
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ perro.url_imagen }}" class="card-img-top" alt="{{ perro.nombre }}" style="height: 200px; object-fit: cover;">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ perro.nombre }}</h5><span class="badge     {% if perro.estado == 'disponible' %} bg-success 
+    {% elif perro.estado == 'reservado' %} bg-warning text-dark 
+    {% elif perro.estado == 'adoptado' %} bg-secondary 
+    {% endif %}">{{perro.estado}}</span>
+                    <p class="card-text mb-1"><strong>Raza:</strong> {{ perro.raza }}</p>
+                    <p class="card-text mb-3"><strong>Edad:</strong> {{ perro.edad }} años</p>
+                    <button type="button" class="btn btn-secondary mt-auto" disabled>Adoptar</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
     {% empty %}
         <p>No hay perros disponibles.</p>
     {% endfor %}
